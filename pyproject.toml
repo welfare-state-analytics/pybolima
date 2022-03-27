@@ -1,0 +1,95 @@
+[tool.poetry]
+name = "pybolima"
+version = "0.1.0"
+description = "pybolima"
+authors = ["Roger Mähler <roger.mahler@hotmail.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.10.0"
+stanza = "^1.3.0"
+pyarrow = "^7.0.0"
+fastparquet = "^0.8.0"
+loguru = "^0.6.0"
+more-itertools = "^8.12.0"
+tqdm = "^4.63.1"
+click = "^8.0.4"
+
+[tool.poetry.dev-dependencies]
+black = "^22.1.0"
+flake8 = "^4.0.1"
+isort = "^5.10.1"
+pycodestyle = "^2.8.0"
+pyflakes = "^2.4.0"
+pylint = "^2.12.2"
+pytest = "^7.1.1"
+
+
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = ["-rfE", "-q"]
+log_cli = "False"
+testpaths = ["tests"]
+python_files = "*_test.py"
+python_functions = "test_*"
+markers = ["slow: marks tests as slow (deselect with '-m \"not slow\"')"]
+norecursedirs = [
+    "test_data",
+    "output",
+    "__pycache__",
+    "deprecated",
+    ".git",
+    ".github",
+    ".vscode",
+    "profile-reports",
+    "tmp",
+]
+
+
+[tool.black]
+skip_string_normalization = true
+line-length = 120
+target-version = ["py38"]
+skip-string-normalization = true
+exclude = '''
+(
+  \.git
+  | \.pypy_cache
+  | \.pytest_cache
+  | \.mypy_cache
+  | deprecated
+)
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 120
+py_version = "auto"
+float_to_top = true
+src_paths = ["pybolima", "tests"]
+
+[tool.pyright]
+# https://github.com/microsoft/pyright/blob/main/docs/configuration.md
+include = ["pybolima", "tests"]
+exclude = [
+    ".git",
+    ".vscode",
+    "**/__init__.py",
+    "**/__pycache__",
+    "**/test_data",
+    "**/data",
+]
+
+reportMissingImports = true
+reportMissingTypeStubs = false
+reportUntypedFunctionDecorator = false
+reportUntypedClassDecorator = true
+reportOptionalSubscript = false
+reportOptionalMemberAccess = false
+reportOptionalCall = false
+pythonVersion = "3.9"
+
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
