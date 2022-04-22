@@ -33,7 +33,6 @@ def tag_bolima(
     skip_lemma: bool = False,
     model_root: str = DEFAULT_MODEL_ROOT,
 ):
-    print(locals())
     if not isfile(source_filename):
         raise FileNotFoundError(source_filename)
 
