@@ -24,7 +24,7 @@ def tag_issues(
 ):
 
     with dispatch_cls(target=target, opts=dispatch_opts) as dispatcher:
-        for title, pages in tqdm(issue_reader(source=source)):
+        for title, pages in issue_reader(source=source):
             try:
                 tagged_issue: TaggedIssue = tag_issue(
                     tagger=tagger, title=title, issue_pages=pages, normalize_chars=True

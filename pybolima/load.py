@@ -43,7 +43,7 @@ def load_bolima(filename: str) -> pd.DataFrame:
 def issue_reader(source: str | pd.DataFrame) -> Iterable[tuple[str, pd.DataFrame]]:
     corpus: pd.DataFrame = source if isinstance(source, pd.DataFrame) else load_bolima(filename=source)
     titles: list[str] = sorted(corpus['title'].unique())
-    for title in titles:
+    for title in tqdm(titles):
         pages: pd.DataFrame = corpus[corpus['title'] == title].copy()
         pages.drop(columns=['Unnamed: 0'], errors='ignore', inplace=True)
         yield (title, pages)
