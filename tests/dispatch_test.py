@@ -54,7 +54,7 @@ def test_workflow():
 
     args: dict = {
         'numeric_frame': True,
-        'source_filename': './data/westac/blm/blm.parquet',
+        'source_filename': 'tests/test_data/bolima_corpus_4pages.csv',
         'target_folder': './tests/output/apa',
         'force': True,
         'compress_type': 'feather',
