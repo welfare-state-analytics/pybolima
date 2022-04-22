@@ -2,9 +2,9 @@ from __future__ import annotations
 
 import typing as t
 from io import StringIO
-from loguru import logger
 
 import pandas as pd
+from loguru import logger
 from tqdm import tqdm
 
 from pybolima.dispatch import TaggedFramePerGroupDispatcher
@@ -26,10 +26,13 @@ def tag_issues(
     with dispatch_cls(target=target, opts=dispatch_opts) as dispatcher:
         for title, pages in tqdm(issue_reader(source=source)):
             try:
-                tagged_issue: TaggedIssue = tag_issue(tagger=tagger, title=title, issue_pages=pages, normalize_chars=True)
+                tagged_issue: TaggedIssue = tag_issue(
+                    tagger=tagger, title=title, issue_pages=pages, normalize_chars=True
+                )
                 dispatcher.dispatch(tagged_issue=tagged_issue)
             except Exception as ex:
                 logger.info(f"failed: {title} {ex}")
+
 
 def tag_issue(
     *,

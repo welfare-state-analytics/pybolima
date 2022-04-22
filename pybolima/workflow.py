@@ -1,18 +1,20 @@
 from __future__ import annotations
-import os
 
+import os
 import shutil
+from os.path import isdir, isfile
+
 import pandas as pd
+
 from pybolima.dispatch import DispatchOptions, IdTaggedFramePerGroupDispatcher, TaggedFramePerGroupDispatcher
 from pybolima.stanza import ITagger, StanzaTagger
 from pybolima.tagger import tag_issues
 from pybolima.utility import pretokenize
 
-from os.path import isfile, isdir
-
 DEFAULT_MODEL_ROOT: str = "/data/sparv/models/stanza"
 
 # pylint: disable=too-many-arguments
+
 
 class WorkFlowError(Exception):
     ...

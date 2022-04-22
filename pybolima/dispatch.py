@@ -1,8 +1,8 @@
 from __future__ import annotations
-from dataclasses import dataclass
 
 import os
 from collections import defaultdict
+from dataclasses import dataclass
 from typing import Any, Literal
 
 import numpy as np
@@ -10,7 +10,7 @@ import pandas as pd
 
 from .foss.pos_tags import PoS_Tag_Scheme, PoS_TAGS_SCHEMES
 from .foss.stopwords import STOPWORDS
-from .interface import CompressType, TaggedIssue
+from .interface import TaggedIssue
 from .utility import replace_extension, store_str, trim_series_type
 
 jj = os.path.join
@@ -79,6 +79,7 @@ class TaggedFramePerGroupDispatcher:
         di['n_tokens'] = trim_series_type(di.n_tokens)
         di['document_id'] = trim_series_type(di.document_id)
 
+        di.reset_index(drop=True, inplace=True)
         self.store(filename=jj(self.target, 'document_index.csv'), data=di)
 
     def store(self, filename: str, data: str | pd.DataFrame) -> None:

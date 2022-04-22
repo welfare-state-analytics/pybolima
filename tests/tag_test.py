@@ -109,13 +109,15 @@ def test_tagged_issue():
     }
     assert set(tagged_issue.document_index.document_name) == {'BLM-1943:1_15', 'BLM-1943:1_20'}
 
+
 def test_issue_reader():
     reader: Iterable[tuple[str, pd.DataFrame]] = issue_reader(source=load_sample_corpus())
 
     data = list(reader)
 
     assert len(data) == 2
-    assert [x[0] for x in data ] == sorted(TEST_DOCUMENTS)
+    assert [x[0] for x in data] == sorted(TEST_DOCUMENTS)
+
 
 # def test_stanza_download():
 #     stanza.download(
