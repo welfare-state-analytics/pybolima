@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import Iterable
 
 import pandas as pd
+from tqdm import tqdm
 
 
 def read_header(filename: str) -> str:
